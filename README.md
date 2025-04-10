@@ -16,28 +16,6 @@ The set of libraries supports mix networks (Tor, I2P, Nym), proxies, end-to-end
 encryption without central authorities/PKI (Noise-based encryption protocols 
 like lightning wire protocol, NTLS etc).
 
-## Manifest
-
-```yaml
-Name: cyphernet
-Type: Library
-Kind: Free software
-License: Apache-2.0
-Language: Rust
-Compiler: 1.65
-Author: Maxim Orlovsky
-Maintained: Cyphernet DAO, Switzerland
-Maintainers:
-  Maxim Orlovsky:
-    GitHub: @dr-orlovsky
-    GPG: EAE730CEC0C663763F028A5860094BAF18A26EC9
-    SSH: BoSGFzbyOKC7Jm28MJElFboGepihCpHop60nS8OoG/A
-    EMail: dr@orlovsky.ch
-  Alexis Sellier:
-    GitHub: @cloudhead
-    SSH: iTDjRHSIaoL8dpHbQ0mv+y0IQqPufGl2hQwk4TbXFlw
-```
-
 ## Overview
 
 The library provides three main components, structured as modules:
