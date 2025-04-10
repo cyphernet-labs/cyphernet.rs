@@ -213,6 +213,7 @@ dependencies = [
  "ec25519",
  "multibase",
  "secp256k1",
+ "serde",
  "sha2",
  "sha3",
 ]

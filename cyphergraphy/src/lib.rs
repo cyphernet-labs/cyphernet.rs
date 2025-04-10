@@ -26,6 +26,9 @@
 
 #[macro_use]
 extern crate amplify;
+#[cfg(feature = "serde")]
+#[macro_use]
+extern crate serde;
 
 mod digest;
 #[cfg(feature = "x25519")]

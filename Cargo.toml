@@ -94,7 +94,7 @@ noise_secp256k1 = ["noise-framework/secp256k1"]
 # Encodings
 pem = ["cyphergraphy/pem"]
 multibase = ["cyphergraphy/multibase"]
-serde = ["cypheraddr/serde"]
+serde = ["cypheraddr/serde", "cyphergraphy/serde"]
 
 [package.metadata.docs.rs]
 all-features = true
