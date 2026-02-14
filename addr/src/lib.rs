@@ -180,6 +180,12 @@ pub enum AddrParseError {
     Tor(tor::OnionAddrParseError),
 
     #[from]
+    #[cfg(feature = "i2p")]
+    #[display(inner)]
+    /// invalid I2P address
+    I2p(i2p::I2pAddrParseError),
+
+    #[from]
     #[display(inner)]
     /// invalid IP or socket address
     InvalidSocketAddr(std::net::AddrParseError),

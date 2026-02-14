@@ -21,8 +21,8 @@ serde = { version = "1", features = ["derive"], optional = true }
 
 [features]
 dns = []
-tor = ["sha3", "cyphergraphy/ed25519", "base32"]
-i2p = ["cyphergraphy/ed25519"]
+tor = ["base32", "cyphergraphy/ed25519", "sha3"]
+i2p = ["base32", "cyphergraphy/ed25519"]
 nym = []
 p2p-ed25519 = ["cyphergraphy/ed25519"]
 p2p-secp256k1 = ["cyphergraphy/secp256k1"]
