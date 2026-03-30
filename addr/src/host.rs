@@ -134,7 +134,14 @@ impl FromStr for HostName {
                 .map(Self::Tor)
                 .map_err(AddrParseError::from);
         }
-        // TODO: Support Num and I2P
+        #[cfg(feature = "i2p")]
+        if super::i2p::ends_with_suffix(s) {
+            return super::i2p::I2pAddr::from_str(s)
+                .map(Self::I2p)
+                .map_err(AddrParseError::from);
+        }
+
+        // TODO: Support Num
         #[cfg(feature = "dns")]
         {
             Ok(Self::Dns(s.to_owned()))
