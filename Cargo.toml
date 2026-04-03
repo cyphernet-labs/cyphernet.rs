@@ -9,8 +9,8 @@ default-members = [
 ]
 
 [workspace.package]
-authors = ["Dr. Maxim Orlovsky <orlovsky@cyphernet.org>"]
-homepage = "https://cyphernet.org"
+authors = ["Dr. Maxim Orlovsky <orlovsky@cyphernet.io>"]
+homepage = "https://cyphernet.io"
 repository = "https://github.com/Cyphernet-DAO/rust-cyphernet"
 rust-version = "1.69" # B/c of amplify dependency
 edition = "2021"
