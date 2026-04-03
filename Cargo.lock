@@ -220,7 +220,7 @@ dependencies = [
 
 [[package]]
 name = "cyphernet"
-version = "0.5.2"
+version = "0.5.3"
 dependencies = [
  "cypheraddr",
  "cyphergraphy",
