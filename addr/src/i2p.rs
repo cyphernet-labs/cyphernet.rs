@@ -213,7 +213,7 @@ mod test {
     use super::*;
 
     #[test]
-    fn roundrip() {
+    fn roundtrip() {
         for raw in [
             // https://pablo.rauzy.name/outreach/2600/how-to-run-an-i2p-hidden-service.txt
             "khpazz3f747z5zet72s6g3dccw53bfdqyhxt5da4sv7ouve5veuq.b32.i2p",

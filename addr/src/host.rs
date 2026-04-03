@@ -141,7 +141,7 @@ impl FromStr for HostName {
                 .map_err(AddrParseError::from);
         }
 
-        // TODO: Support Num
+        // TODO: Support Nym
         #[cfg(feature = "dns")]
         {
             Ok(Self::Dns(s.to_owned()))
