@@ -9,8 +9,8 @@ default-members = [
 ]
 
 [workspace.package]
-authors = ["Dr. Maxim Orlovsky <orlovsky@cyphernet.org>"]
-homepage = "https://cyphernet.org"
+authors = ["Dr. Maxim Orlovsky <orlovsky@cyphernet.io>"]
+homepage = "https://cyphernet.io"
 repository = "https://github.com/Cyphernet-DAO/rust-cyphernet"
 rust-version = "1.69" # B/c of amplify dependency
 edition = "2021"
@@ -29,7 +29,7 @@ socks5-client = { path = "socks5-client", version = "0.4.1" }
 
 [package]
 name = "cyphernet"
-version = "0.5.2"
+version = "0.5.3"
 description = "Cyphernet is a set of libraries for privacy-preserving networking apps"
 keywords = ["privacy", "noise-protocol", "cypherpunk", "tor", "nym"]
 categories = ["network-programming", "cryptography", "encoding"]

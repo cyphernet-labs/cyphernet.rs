@@ -2,22 +2,23 @@
 //
 // SPDX-License-Identifier: Apache-2.0
 //
-// Written in 2019-2023 by
-//     Dr. Maxim Orlovsky <orlovsky@cyphernet.org>
+// Designed and written in 2019-2026 by Dr. Maxim Orlovsky <orlovsky@cyphernet.io>
 //
-// Copyright 2022-2023 Cyphernet DAO, Switzerland
+// Copyright 2022-2026 Cyphernet Labs, Institute for Distributed and Cognitive Computing.
+// All rights reserved.
 //
-// Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
-// You may obtain a copy of the License at
+// Copyright (C) 2021-2025 Dr Maxim Orlovsky.
+// All rights under the above copyrights are reserved.
 //
-//     http://www.apache.org/licenses/LICENSE-2.0
+// Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
+// in compliance with the License. You may obtain a copy of the License at
 //
-// Unless required by applicable law or agreed to in writing, software
-// distributed under the License is distributed on an "AS IS" BASIS,
-// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-// See the License for the specific language governing permissions and
-// limitations under the License.
+//        http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software distributed under the License
+// is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express
+// or implied. See the License for the specific language governing permissions and limitations under
+// the License.
 
 use std::fmt::{self, Display, Formatter};
 use std::str::FromStr;
@@ -29,9 +30,7 @@ const SUFFIX_I2P_ALT: &str = ".i2p.alt";
 
 /// Checks if the given string ends with a valid I2P address suffix,
 /// and thus could be considered for parsing as an I2P address.
-pub fn ends_with_suffix(s: &str) -> bool {
-    s.ends_with(SUFFIX_I2P) || s.ends_with(SUFFIX_I2P_ALT)
-}
+pub fn ends_with_suffix(s: &str) -> bool { s.ends_with(SUFFIX_I2P) || s.ends_with(SUFFIX_I2P_ALT) }
 
 const SUFFIX_B32_I2P: &str = ".b32.i2p";
 const SUFFIX_B32_I2P_ALT: &str = ".b32.i2p.alt";
@@ -51,11 +50,10 @@ const EXT_B32_MIN_LEN_CHARS: usize = 56;
 /// addresses or regular domain names. It is not inteded to be fully compliant
 /// with I2P. The following limitations are known:
 ///
-///   1. Base64 names are not parsed/validated. In particular, this
-///      implementation does not check whether their length is within bounds
-///      (between 516 and 616 bytes).
-///   2. [Naming Rules] are not checked. In particular, this implementation
-///      does not exclude malformed names, such as those containing "..".
+///   1. Base64 names are not parsed/validated. In particular, this implementation does not check
+///      whether their length is within bounds (between 516 and 616 bytes).
+///   2. [Naming Rules] are not checked. In particular, this implementation does not exclude
+///      malformed names, such as those containing "..".
 ///   3. Checksums of [Extended Base32 Names] are not checked.
 ///
 /// If these limitations are addressed in the future, some invalid addresses
@@ -195,17 +193,13 @@ impl Display for I2pAddr {
 }
 
 impl From<I2pAddr> for String {
-    fn from(addr: I2pAddr) -> Self {
-        addr.to_string()
-    }
+    fn from(addr: I2pAddr) -> Self { addr.to_string() }
 }
 
 impl TryFrom<String> for I2pAddr {
     type Error = I2pAddrParseError;
 
-    fn try_from(s: String) -> Result<Self, Self::Error> {
-        Self::from_str(&s)
-    }
+    fn try_from(s: String) -> Result<Self, Self::Error> { Self::from_str(&s) }
 }
 
 #[cfg(test)]
@@ -213,7 +207,7 @@ mod test {
     use super::*;
 
     #[test]
-    fn roundrip() {
+    fn roundtrip() {
         for raw in [
             // https://pablo.rauzy.name/outreach/2600/how-to-run-an-i2p-hidden-service.txt
             "khpazz3f747z5zet72s6g3dccw53bfdqyhxt5da4sv7ouve5veuq.b32.i2p",
