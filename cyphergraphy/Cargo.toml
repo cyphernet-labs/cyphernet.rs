@@ -1,6 +1,6 @@
 [package]
 name = "cyphergraphy"
-version = "0.3.0"
+version = "0.3.1"
 description = "Implementation-independent abstractions for main cryptographic algorithms (part of cyphernet suite)"
 keywords = ["cyphernet", "privacy", "secp256k1", "curve25519", "ed25519"]
 categories = ["network-programming", "cryptography"]
@@ -28,6 +28,8 @@ multibase = { version = "0.9.1", optional = true }
 serde = { version = "1", features = ["derive"], optional = true }
 
 [features]
+secp256k1 = ["dep:secp256k1"]
+ec25519 = ["dep:ec25519"]
 x25519 = ["ec25519/x25519"]
 ed25519 = ["ec25519/ed25519", "ec25519/random"]
 keygen_25519 = ["ec25519/random"]
@@ -35,12 +37,13 @@ keygen_secp256k1 = ["secp256k1"]
 bip340 = ["secp256k1"]
 
 ## Digests:
-# sha2
-# sha3
-# blake3
+sha2 = ["dep:sha2"]
+sha3 = ["dep:sha3"]
+blake3 = ["dep:blake3"]
 
 ## Encodings:
-# multibase
+multibase = ["dep:multibase"]
+serde = ["dep:serde"]
 
 # Other:
 pem = ["ec25519/pem", "ec25519/std"]

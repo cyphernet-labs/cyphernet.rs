@@ -206,7 +206,7 @@ dependencies = [
 
 [[package]]
 name = "cyphergraphy"
-version = "0.3.0"
+version = "0.3.1"
 dependencies = [
  "amplify",
  "blake3",
