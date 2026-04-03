@@ -11,16 +11,13 @@ env:
 
 jobs:
   testing:
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ ubuntu-latest, ubuntu-24.04-arm, macos-latest, windows-11-arm, windows-latest ]
     steps:
-      - uses: actions/checkout@v2
-      - name: Install latest stable
-        uses: actions-rs/toolchain@v1
-        with:
-          toolchain: stable
-          override: true
-      - name: Build & test
-        uses: actions-rs/cargo@v1
-        with:
-          command: test
-          args: --workspace --all-features --no-fail-fast
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+      - name: Test ${{matrix.os}}
+        run: cargo test --workspace --all-features --no-fail-fast
