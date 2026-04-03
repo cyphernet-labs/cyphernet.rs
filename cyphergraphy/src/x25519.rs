@@ -24,6 +24,7 @@
 
 use std::cmp::Ordering;
 use std::ops::Deref;
+
 use amplify::Bytes32;
 
 use crate::*;

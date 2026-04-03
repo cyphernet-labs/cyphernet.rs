@@ -30,9 +30,7 @@ const SUFFIX_I2P_ALT: &str = ".i2p.alt";
 
 /// Checks if the given string ends with a valid I2P address suffix,
 /// and thus could be considered for parsing as an I2P address.
-pub fn ends_with_suffix(s: &str) -> bool {
-    s.ends_with(SUFFIX_I2P) || s.ends_with(SUFFIX_I2P_ALT)
-}
+pub fn ends_with_suffix(s: &str) -> bool { s.ends_with(SUFFIX_I2P) || s.ends_with(SUFFIX_I2P_ALT) }
 
 const SUFFIX_B32_I2P: &str = ".b32.i2p";
 const SUFFIX_B32_I2P_ALT: &str = ".b32.i2p.alt";
@@ -52,11 +50,10 @@ const EXT_B32_MIN_LEN_CHARS: usize = 56;
 /// addresses or regular domain names. It is not inteded to be fully compliant
 /// with I2P. The following limitations are known:
 ///
-///   1. Base64 names are not parsed/validated. In particular, this
-///      implementation does not check whether their length is within bounds
-///      (between 516 and 616 bytes).
-///   2. [Naming Rules] are not checked. In particular, this implementation
-///      does not exclude malformed names, such as those containing "..".
+///   1. Base64 names are not parsed/validated. In particular, this implementation does not check
+///      whether their length is within bounds (between 516 and 616 bytes).
+///   2. [Naming Rules] are not checked. In particular, this implementation does not exclude
+///      malformed names, such as those containing "..".
 ///   3. Checksums of [Extended Base32 Names] are not checked.
 ///
 /// If these limitations are addressed in the future, some invalid addresses
@@ -196,17 +193,13 @@ impl Display for I2pAddr {
 }
 
 impl From<I2pAddr> for String {
-    fn from(addr: I2pAddr) -> Self {
-        addr.to_string()
-    }
+    fn from(addr: I2pAddr) -> Self { addr.to_string() }
 }
 
 impl TryFrom<String> for I2pAddr {
     type Error = I2pAddrParseError;
 
-    fn try_from(s: String) -> Result<Self, Self::Error> {
-        Self::from_str(&s)
-    }
+    fn try_from(s: String) -> Result<Self, Self::Error> { Self::from_str(&s) }
 }
 
 #[cfg(test)]

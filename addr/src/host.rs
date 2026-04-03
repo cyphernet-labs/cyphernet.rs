@@ -137,9 +137,7 @@ impl FromStr for HostName {
         }
         #[cfg(feature = "i2p")]
         if super::i2p::ends_with_suffix(s) {
-            return super::i2p::I2pAddr::from_str(s)
-                .map(Self::I2p)
-                .map_err(AddrParseError::from);
+            return super::i2p::I2pAddr::from_str(s).map(Self::I2p).map_err(AddrParseError::from);
         }
 
         // TODO: Support Nym
