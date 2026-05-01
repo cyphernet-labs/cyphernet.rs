@@ -23,6 +23,7 @@
 #[derive(Copy, Clone, Eq, PartialEq, Debug, Display, Error)]
 #[display(doc_comments)]
 #[repr(u8)]
+#[non_exhaustive]
 pub enum ServerError {
     /// general SOCKS server failure
     GeneralFailure = 1,
@@ -40,13 +41,30 @@ pub enum ServerError {
     CommandNotSupported = 7,
     /// address kind not supported
     AddressNotSupported = 8,
+    /// onion service descriptor can not be found
+    HsDescNotFound = 0xF0,
+    /// onion service descriptor is invalid
+    HsDescInvalid = 0xF1,
+    /// onion service introduction failed
+    HsIntroFailed = 0xF2,
+    /// onion service rendezvous failed
+    HsRendFailed = 0xF3,
+    /// onion service missing client authorization
+    HsMissingClientAuth = 0xF4,
+    /// onion service wrong client authorization
+    HsWrongClientAuth = 0xF5,
+    /// onion service address is invalid
+    HsBadAddress = 0xF6,
+    /// onion service introduction timed out
+    HsIntroTimeout = 0xF7,
+
     /// unknown error type
     Unknown = 0xFF,
 }
 
 impl From<u8> for ServerError {
     fn from(value: u8) -> Self {
-        const ALL: [ServerError; 9] = [
+        const ALL: [ServerError; 16] = [
             ServerError::GeneralFailure,
             ServerError::NotAllowed,
             ServerError::NetworkUnreachable,
@@ -55,7 +73,14 @@ impl From<u8> for ServerError {
             ServerError::TtlExpired,
             ServerError::CommandNotSupported,
             ServerError::AddressNotSupported,
-            ServerError::Unknown,
+            ServerError::HsDescNotFound,
+            ServerError::HsDescInvalid,
+            ServerError::HsIntroFailed,
+            ServerError::HsRendFailed,
+            ServerError::HsMissingClientAuth,
+            ServerError::HsWrongClientAuth,
+            ServerError::HsBadAddress,
+            ServerError::HsIntroTimeout,
         ];
 
         for ty in ALL {
@@ -64,6 +89,6 @@ impl From<u8> for ServerError {
             }
         }
 
-        unreachable!()
+        ServerError::Unknown
     }
 }
