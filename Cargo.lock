@@ -220,7 +220,7 @@ dependencies = [
 
 [[package]]
 name = "cyphernet"
-version = "0.5.3"
+version = "0.5.4"
 dependencies = [
  "cypheraddr",
  "cyphergraphy",
@@ -287,7 +287,7 @@ dependencies = [
 
 [[package]]
 name = "eidolon-auth"
-version = "0.3.0"
+version = "0.3.1"
 dependencies = [
  "amplify",
  "cyphergraphy",
@@ -357,7 +357,7 @@ dependencies = [
 
 [[package]]
 name = "noise-framework"
-version = "0.4.0"
+version = "0.4.1"
 dependencies = [
  "amplify",
  "chacha20poly1305",
@@ -491,7 +491,7 @@ checksum = "74233d3b3b2f6d4b006dc19dee745e73e2a6bfb6f93607cd3b02bd5b00797d7c"
 
 [[package]]
 name = "socks5-client"
-version = "0.4.2"
+version = "0.4.3"
 dependencies = [
  "amplify",
  "cypheraddr",
