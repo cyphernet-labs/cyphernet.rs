@@ -233,10 +233,18 @@ where
     type Err = AddrParseError;
 
     fn from_str(s: &str) -> Result<Self, Self::Err> {
-        if let Some((host, port)) = s.rsplit_once(':') {
+        // A bracketed IPv6 literal (e.g. `[::1]`) contains colons inside the address itself, so
+        // only a colon following the closing bracket may act as the port separator. For all other
+        // hosts the last colon separates the port, as before.
+        let port_sep = if s.starts_with('[') {
+            s.rfind(']').map(|end| end + 1).filter(|&i| s[i..].starts_with(':'))
+        } else {
+            s.rfind(':')
+        };
+        if let Some(i) = port_sep {
             Ok(PartialAddr {
-                host: H::from_str(host)?,
-                port: Some(u16::from_str(port).map_err(|_| AddrParseError::InvalidPort)?),
+                host: H::from_str(&s[..i])?,
+                port: Some(u16::from_str(&s[i + 1..]).map_err(|_| AddrParseError::InvalidPort)?),
             })
         } else {
             Ok(PartialAddr {
@@ -244,5 +252,33 @@ where
                 port: None,
             })
         }
+    }
+}
+
+#[cfg(test)]
+mod test {
+    use super::*;
+
+    #[cfg(feature = "dns")]
+    #[test]
+    fn partial_addr_bracketed_ipv6_without_port() {
+        // A bracketed IPv6 literal must parse the same host whether or not a port is present;
+        // this holds for IPv4 but used to fail for IPv6 because the last colon is inside the
+        // address. See https://github.com/cyphernet-labs/cyphernet.rs/issues/20.
+        let with_port = PartialAddr::<HostName, 0>::from_str("[::1]:80").unwrap();
+        let no_port = PartialAddr::<HostName, 0>::from_str("[::1]").unwrap();
+        assert_eq!(with_port.port, Some(80));
+        assert_eq!(no_port.port, None);
+        assert_eq!(no_port.host, with_port.host);
+    }
+
+    #[cfg(feature = "dns")]
+    #[test]
+    fn partial_addr_ipv4_with_and_without_port() {
+        let with_port = PartialAddr::<HostName, 0>::from_str("127.0.0.1:80").unwrap();
+        let no_port = PartialAddr::<HostName, 0>::from_str("127.0.0.1").unwrap();
+        assert_eq!(with_port.port, Some(80));
+        assert_eq!(no_port.port, None);
+        assert_eq!(no_port.host, with_port.host);
     }
 }
